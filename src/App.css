@@ -22,7 +22,7 @@ body {
   height: 100%;
   background:
     radial-gradient(ellipse 80% 70% at 50% 40%, transparent 40%, rgba(0, 0, 0, 0.55) 100%),
-    radial-gradient(ellipse at 30% 20%, rgba(184, 255, 60, 0.03), transparent 50%),
+    radial-gradient(ellipse at 30% 20%, rgba(176, 225, 240, 0.04), transparent 50%),
     var(--ink);
 }
 
@@ -99,7 +99,7 @@ body {
   color: var(--paper-dim);
 }
 
-.status-cell.live .status-glyph { color: var(--accent); }
+.status-cell.live .status-glyph { color: var(--spatial-acid); }
 .status-glyph { font-size: 12px; line-height: 1; }
 .status-label {
   font-size: 9px;
@@ -132,9 +132,9 @@ body {
 .status-mode:hover { opacity: 1; color: var(--paper); }
 .status-mode.active {
   opacity: 1;
-  color: var(--accent);
-  background: var(--accent-dim);
-  border-color: rgba(184, 255, 60, 0.28);
+  color: var(--console-cyan);
+  background: var(--console-cyan-dim);
+  border-color: rgba(176, 225, 240, 0.28);
 }
 
 .stage { min-width: 0; min-height: 0; display: flex; flex-direction: column; }
@@ -198,13 +198,13 @@ body {
   transition: border-color var(--spring), background var(--spring), color var(--spring);
 }
 .glass-pill:hover {
-  border-color: rgba(184, 255, 60, 0.4);
-  color: var(--accent);
+  border-color: rgba(176, 225, 240, 0.4);
+  color: var(--console-cyan);
 }
 .glass-pill.primary {
-  background: var(--accent-dim);
-  border-color: rgba(184, 255, 60, 0.35);
-  color: var(--accent);
+  background: var(--console-cyan-dim);
+  border-color: rgba(176, 225, 240, 0.35);
+  color: var(--console-cyan);
 }
 
 /* —— B Sim: viewport + bottom term + drawer —— */
@@ -213,22 +213,30 @@ body {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 420px;
+  /* spatial viewport majority + ~30% command center */
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 30%);
 }
 
 .col-main {
   min-width: 0;
   min-height: 0;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.workspace-b .col-main {
-  grid-template-rows: minmax(0, 1.2fr) minmax(180px, 0.45fr);
+.command-center {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border-left: 1px solid var(--hairline);
+  background: var(--ink);
+  z-index: 2;
 }
 
 .workspace-c .col-main {
-  grid-template-rows: minmax(0, 1fr) 72px minmax(160px, 0.4fr);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 72px;
 }
 
 .viewport {
@@ -281,8 +289,8 @@ body {
 
 .sim-grid {
   background-image:
-    linear-gradient(to right, rgba(242, 240, 235, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(242, 240, 235, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(176, 225, 240, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(176, 225, 240, 0.08) 1px, transparent 1px);
   background-size: 112px 78px;
 }
 
@@ -291,8 +299,8 @@ body {
   height: 100px;
   border-radius: var(--r-md);
   border: 1px solid rgba(184, 255, 60, 0.45);
-  background: var(--accent-dim);
-  color: var(--accent);
+  background: var(--spatial-acid-dim);
+  color: var(--spatial-acid);
   font-family: var(--font-mono);
   font-size: 14px;
   display: grid;
@@ -344,7 +352,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 140px;
+  min-height: 0;
   background: var(--ink);
   position: relative;
 }
@@ -380,8 +388,8 @@ body {
   cursor: pointer;
 }
 .mini-btn:hover {
-  color: var(--accent);
-  border-color: rgba(184, 255, 60, 0.3);
+  color: var(--console-cyan);
+  border-color: rgba(176, 225, 240, 0.3);
 }
 
 /* Glyph layer — never blur */
@@ -412,11 +420,13 @@ body {
   background: var(--glass-e2);
   backdrop-filter: blur(var(--glass-blur-e2));
   -webkit-backdrop-filter: blur(var(--glass-blur-e2));
-  border-left: 1px solid var(--hairline);
-  box-shadow: var(--shadow-contact);
-  padding: 20px;
+  border-bottom: 1px solid var(--hairline);
+  box-shadow: none;
+  padding: 16px;
   overflow: auto;
   z-index: 3;
+  max-height: 42%;
+  flex-shrink: 0;
 }
 
 .drawer h2,
@@ -451,9 +461,9 @@ body {
   font-family: var(--font-mono);
   font-size: 13px;
 }
-.drawer-row.live { border-color: rgba(184, 255, 60, 0.28); }
+.drawer-row.live { border-color: rgba(184, 255, 60, 0.35); }
 .drawer-status { color: var(--muted); font-size: 12px; }
-.drawer-row.live .drawer-status { color: var(--accent); }
+.drawer-row.live .drawer-status { color: var(--spatial-acid); }
 .drawer-meta {
   margin: 0;
   font-family: var(--font-mono);
@@ -482,14 +492,14 @@ body {
 }
 .phase.active {
   border-color: rgba(184, 255, 60, 0.4);
-  background: var(--accent-dim);
+  background: var(--spatial-acid-dim);
 }
 .phase-name {
   font-family: var(--font-mono);
   font-size: 14px;
   color: var(--paper);
 }
-.phase.active .phase-name { color: var(--accent); }
+.phase.active .phase-name { color: var(--spatial-acid); }
 .phase-state {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -501,7 +511,7 @@ body {
   font-size: 18px;
   color: var(--muted);
 }
-.phase.active .phase-pct { color: var(--accent); }
+.phase.active .phase-pct { color: var(--spatial-acid); }
 
 .progress-track {
   margin: 24px 0 16px;
@@ -512,7 +522,7 @@ body {
 }
 .progress-fill {
   height: 100%;
-  background: var(--accent);
+  background: var(--spatial-acid);
   border-radius: 999px;
 }
 
@@ -549,7 +559,7 @@ body {
   color: var(--muted);
 }
 .ckpt.live {
-  color: var(--accent);
+  color: var(--spatial-acid);
   border-color: rgba(184, 255, 60, 0.35);
 }
 
@@ -558,8 +568,9 @@ body {
   .workspace-c {
     grid-template-columns: 1fr;
   }
-  .drawer,
-  .status-sheet {
-    display: none;
+  .command-center {
+    border-left: 0;
+    border-top: 1px solid var(--hairline);
+    max-height: 40vh;
   }
 }
