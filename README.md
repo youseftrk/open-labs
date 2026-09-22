@@ -1,6 +1,5 @@
-# Labs
-
-I built a terminal for robot people — sim, train, and deploy in one spatial window.
+WROTE 2736
+uilt a terminal for robot people — sim, train, and deploy in one spatial window.
 
 Labs is a Ghostty-class desktop terminal purpose-built for robotics simulation, policy training, and deployment. Spatial dark chrome (depth, glass, clear panes). Not a generic IDE skin.
 
@@ -9,6 +8,7 @@ Labs is a Ghostty-class desktop terminal purpose-built for robotics simulation, 
 - **Terminal** — xterm.js + WebGL text; shell bridge via Tauri (see Notes below)
 - **Sim / Train / Deploy** — mode side rail with status panes
 - **Hello twin** — one-click intent to run Open Physical Sim smoke
+- **Open Real2Sim CLIs** — stub targets for `or2s`, `reconstruct`, `envc` (smoke: `or2s validate` / `envc --help`)
 - **Session tabs** — stub for multi-session workflow
 
 ## Stack
@@ -16,6 +16,13 @@ Labs is a Ghostty-class desktop terminal purpose-built for robotics simulation, 
 - Tauri 2 + React + TypeScript
 - xterm.js + `@xterm/addon-webgl`
 - Spatial CSS variables (design tokens)
+
+## v0 demo checklist
+
+1. Open Labs on Mac or Windows → spatial empty state.
+2. Terminal runs `or2s validate` / `envc --help`.
+3. One-click “hello twin” launches Open Physical Sim smoke and shows status in a side pane.
+4. Looks like *us* — spatial depth, not VS Code / Warp clone.
 
 ## Develop
 
@@ -76,6 +83,8 @@ Wire that to your local Open Physical Sim CLI when installed.
 Apache-2.0 — see [LICENSE](./LICENSE).
 
 ## Product
+
+Design (Figma A/B/C + token sheet): [Labs spatial chrome](https://www.figma.com/design/GUBCEbveSK5JD1LNr8dhP0) — accent acid green `#B8FF3C`.
 
 Visual direction: [docs/VISUAL_BRIEF.md](./docs/VISUAL_BRIEF.md).
 
