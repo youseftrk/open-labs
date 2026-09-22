@@ -17,6 +17,13 @@ Labs is a **Ghostty-class** desktop terminal (fast, GPU-backed, native Mac + Win
 4. **Train pane** — kick BC/eval jobs; live success_rate / loss.
 5. **Deploy pane** — env registry (`envc`) + “what’s running where” stubs.
 
+
+## Color (locked)
+- Ink `#181919`
+- Console cyan `#B0E1F0` — chrome / HUD / focus
+- Spatial acid `#B8FF3C` — live viewport / run-success only
+- DimOS *feel*, not Dimensional brand (clean-room)
+
 ## Platforms
 - macOS (Apple Silicon first)
 - Windows 10/11 (x64 + arm64 if easy)
