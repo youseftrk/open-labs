@@ -1,19 +1,27 @@
-import { useState } from "react";
-import { SideRail, type Mode } from "./components/SideRail";
+import { useMemo, useState } from "react";
+import { StatusRail, type Mode } from "./components/StatusRail";
+import { TitleBar } from "./components/TitleBar";
 import { SessionTabs } from "./components/SessionTabs";
 import { ViewportPane } from "./components/ViewportPane";
 import { TerminalPane } from "./components/TerminalPane";
+import { RobotsDrawer } from "./components/RobotsDrawer";
+import { StatusSheet } from "./components/StatusSheet";
+import { CheckpointStrip } from "./components/CheckpointStrip";
 import "./styles/tokens.css";
 import "./App.css";
 
 type Tab = { id: string; label: string };
 
 export default function App() {
-  const [mode, setMode] = useState<Mode>("sim");
-  const [tabs, setTabs] = useState<Tab[]>([
-    { id: "1", label: "session 1" },
-  ]);
+  const [mode, setMode] = useState<Mode>("empty");
+  const [tabs, setTabs] = useState<Tab[]>([{ id: "1", label: "session" }]);
   const [activeId, setActiveId] = useState("1");
+
+  const title = useMemo(() => {
+    if (mode === "empty") return "Labs";
+    if (mode === "sim") return "Labs — sim / warehouse-01";
+    return `Labs — ${mode} · run-042`;
+  }, [mode]);
 
   const addTab = () => {
     const id = String(Date.now());
@@ -21,19 +29,53 @@ export default function App() {
     setActiveId(id);
   };
 
+  const enterSim = () => setMode("sim");
+
   return (
-    <div className="app-shell">
-      <SideRail mode={mode} onMode={setMode} />
-      <div className="stage">
-        <SessionTabs
-          tabs={tabs}
-          activeId={activeId}
-          onSelect={setActiveId}
-          onAdd={addTab}
+    <div className={`app-shell layout-${mode}`}>
+      <TitleBar title={title} />
+      <div className="app-body">
+        <StatusRail
+          mode={mode}
+          onMode={(m) => setMode(m)}
         />
-        <div className="workspace">
-          <ViewportPane mode={mode} />
-          <TerminalPane />
+        <div className="stage">
+          {mode === "empty" ? (
+            <ViewportPane mode="empty" onEnterSim={enterSim} />
+          ) : mode === "sim" ? (
+            <div className="workspace-b">
+              <div className="col-main">
+                <ViewportPane mode="sim" onEnterSim={enterSim} />
+                <div className="term-stack">
+                  <SessionTabs
+                    tabs={tabs}
+                    activeId={activeId}
+                    onSelect={setActiveId}
+                    onAdd={addTab}
+                  />
+                  <TerminalPane />
+                </div>
+              </div>
+              <RobotsDrawer />
+            </div>
+          ) : (
+            <div className="workspace-c">
+              <div className="col-main">
+                <ViewportPane mode={mode} onEnterSim={enterSim} />
+                <CheckpointStrip />
+                <div className="term-stack">
+                  <SessionTabs
+                    tabs={tabs}
+                    activeId={activeId}
+                    onSelect={setActiveId}
+                    onAdd={addTab}
+                  />
+                  <TerminalPane />
+                </div>
+              </div>
+              <StatusSheet mode={mode} />
+            </div>
+          )}
         </div>
       </div>
     </div>

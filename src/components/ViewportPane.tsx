@@ -1,47 +1,58 @@
 import { invoke } from "@tauri-apps/api/core";
-import type { Mode } from "./SideRail";
+import type { Mode } from "./StatusRail";
 
 type Props = {
   mode: Mode;
+  onEnterSim: () => void;
 };
 
 const isTauri = () =>
   typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
 
-export function ViewportPane({ mode }: Props) {
+export function ViewportPane({ mode, onEnterSim }: Props) {
   const runHelloTwin = () => {
     if (isTauri()) {
       invoke("run_hello_twin").catch(console.error);
     } else {
-      console.info("→ intending: open-physical-sim hello twin");
+      console.info("→ intending: open-physical-sim hello twin / python scripts/hello_twin.py");
     }
   };
+
+  if (mode === "empty") {
+    return (
+      <div className="viewport empty">
+        <div className="empty-stage">
+          <h1 className="wordmark">Labs</h1>
+          <p className="tagline">Open a sim, attach a robot, or paste a session.</p>
+          <div className="glass-actions">
+            <button type="button" className="glass-pill primary" onClick={onEnterSim}>
+              New sim session
+            </button>
+            <button type="button" className="glass-pill" onClick={onEnterSim}>
+              Open env
+            </button>
+            <button type="button" className="glass-pill">
+              Connect robot
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (mode === "sim") {
     return (
       <div className="viewport">
-        <div className="viewport-inner">
+        <div className="viewport-stage">
           <div className="viewport-toolbar">
-            <span className="viewport-label">Viewport · sim</span>
+            <span className="viewport-label">viewport · physical-sim</span>
             <button type="button" className="glass-pill primary" onClick={runHelloTwin}>
               Run hello twin
             </button>
           </div>
-          <div className="viewport-body">
-            <h1 className="wordmark">Labs</h1>
-            <p className="tagline">
-              Sim stage placeholder — MuJoCo / Open Physical Sim attaches here.
-            </p>
-            <div className="glass-actions">
-              <button type="button" className="glass-pill primary" onClick={runHelloTwin}>
-                Run hello twin
-              </button>
-              <button type="button" className="glass-pill">
-                New sim session
-              </button>
-              <button type="button" className="glass-pill">
-                Open env
-              </button>
+          <div className="viewport-body sim-grid">
+            <div className="robot-proxy" aria-hidden="true">
+              R1
             </div>
           </div>
         </div>
@@ -49,73 +60,15 @@ export function ViewportPane({ mode }: Props) {
     );
   }
 
-  if (mode === "train") {
-    return (
-      <div className="viewport">
-        <div className="viewport-inner">
-          <div className="mode-panel">
-            <h2>Train</h2>
-            <div className="mode-card">
-              <p>Kick BC / eval jobs. Live success_rate and loss will land here.</p>
-              <div className="mode-meta">
-                <div>
-                  <span>phase</span>
-                  <br />
-                  <strong>idle</strong>
-                </div>
-                <div>
-                  <span>success_rate</span>
-                  <br />
-                  <strong>—</strong>
-                </div>
-                <div>
-                  <span>loss</span>
-                  <br />
-                  <strong>—</strong>
-                </div>
-                <div>
-                  <span>ETA</span>
-                  <br />
-                  <strong>—</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+  /* train / deploy — dimmed viewport plane */
   return (
-    <div className="viewport">
-      <div className="viewport-inner">
-        <div className="mode-panel">
-          <h2>Deploy</h2>
-          <div className="mode-card">
-            <p>Env registry (envc) and what’s running where — stubs for v0.</p>
-            <div className="mode-meta">
-              <div>
-                <span>env</span>
-                <br />
-                <strong>local</strong>
-              </div>
-              <div>
-                <span>robot link</span>
-                <br />
-                <strong>offline</strong>
-              </div>
-              <div>
-                <span>artifact</span>
-                <br />
-                <strong>—</strong>
-              </div>
-              <div>
-                <span>status</span>
-                <br />
-                <strong>idle</strong>
-              </div>
-            </div>
-          </div>
+    <div className="viewport dimmed">
+      <div className="viewport-stage">
+        <div className="viewport-toolbar">
+          <span className="viewport-label">viewport · dimmed during {mode}</span>
+        </div>
+        <div className="viewport-body muted-body">
+          <p className="tagline">Stage holds while {mode} runs.</p>
         </div>
       </div>
     </div>

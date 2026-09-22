@@ -1,21 +1,24 @@
-/* Labs spatial tokens — ink #171819 family, one accent, 3 glass elevations */
+/* Labs spatial tokens — locked to Figma Token Sheet (GUBCEbveSK5JD1LNr8dhP0 / 1:2) */
 :root {
-  /* Void / ink */
-  --ink-0: #121314;
-  --ink-1: #171819;
+  /* Surfaces */
+  --void: #121314;
+  --ink: #171819;
+  --ink-0: var(--void);
+  --ink-1: var(--ink);
   --ink-2: #1c1e20;
   --ink-3: #232628;
   --ink-4: #2c3033;
 
-  /* Paper text (never pure white) */
-  --paper: #e8e6e3;
-  --paper-muted: #9a9690;
+  /* Paper (Token Sheet) — never pure #fff */
+  --paper: #f2f0eb;
+  --paper-muted: #8c8c8c;
   --paper-dim: #6b6762;
+  --muted: #8c8c8c;
 
-  /* One operator accent — acid green */
-  --accent: #b8f255;
-  --accent-dim: rgba(184, 242, 85, 0.18);
-  --accent-glow: rgba(184, 242, 85, 0.35);
+  /* Accent locked: acid green */
+  --accent: #b8ff3c;
+  --accent-dim: rgba(184, 255, 60, 0.18);
+  --accent-glow: rgba(184, 255, 60, 0.35);
 
   /* Semantic */
   --run: var(--accent);
@@ -23,13 +26,17 @@
   --fail: #e85a4a;
   --idle: var(--paper-dim);
 
-  /* Glass (3 elevations max) */
-  --glass-0: rgba(28, 30, 32, 0.55);
-  --glass-1: rgba(35, 38, 40, 0.72);
-  --glass-2: rgba(44, 48, 51, 0.88);
+  /* Glass elevations — 3 max (E0 flush / E1 dock / E2 float) */
+  --glass-e0: rgba(242, 240, 235, 0.04);
+  --glass-e1: rgba(242, 240, 235, 0.08);
+  --glass-e2: rgba(242, 240, 235, 0.14);
+  --glass-0: var(--glass-e0);
+  --glass-1: var(--glass-e1);
+  --glass-2: var(--glass-e2);
   --glass-blur: 18px;
-  --hairline: rgba(232, 230, 227, 0.08);
-  --hairline-bright: rgba(232, 230, 227, 0.16);
+  --glass-blur-e2: 24px;
+  --hairline: rgba(242, 240, 235, 0.08);
+  --hairline-bright: rgba(242, 240, 235, 0.16);
   --specular: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.07) 0%,
@@ -37,17 +44,16 @@
   );
   --shadow-contact: 0 8px 28px rgba(0, 0, 0, 0.45);
 
-  /* Type */
-  --font-ui: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  /* Type — Geist only as product face (no Inter) */
+  --font-ui: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
 
-  /* Radius — continuous / squircle-ish */
   --r-sm: 8px;
   --r-md: 12px;
   --r-lg: 16px;
   --r-pill: 999px;
 
-  /* Motion */
+  --rail-w: 44px;
   --spring: 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
