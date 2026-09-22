@@ -88,6 +88,6 @@ Design (Figma A/B/C + token sheet): [Labs spatial chrome](https://www.figma.com/
 
 **Dual-signal color lock:** ink `#181919` · console cyan `#B0E1F0` (chrome / HUD / focus) · spatial acid `#B8FF3C` (live viewport / run-success only). Geist / Geist Mono. DimOS *feel*, not Dimensional brand.
 
-Moodboard: [docs/MOODBOARD_LABS.md](./docs/MOODBOARD_LABS.md). Visual direction: [docs/VISUAL_BRIEF.md](./docs/VISUAL_BRIEF.md).
+Moodboard: [docs/MOODBOARD_LABS.md](./docs/MOODBOARD_LABS.md). Layout: [docs/LAYOUT-LABS.md](./docs/LAYOUT-LABS.md). Visual direction: [docs/VISUAL_BRIEF.md](./docs/VISUAL_BRIEF.md).
 
 See [PRODUCT.md](./PRODUCT.md).
