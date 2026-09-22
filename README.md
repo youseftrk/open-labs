@@ -84,10 +84,10 @@ Apache-2.0 — see [LICENSE](./LICENSE).
 
 ## Product
 
-Design (Figma A/B/C + token sheet): [Labs spatial chrome](https://www.figma.com/design/GUBCEbveSK5JD1LNr8dhP0).
+**Eng SoT (no Figma→code):** [docs/VISUAL_BRIEF.md](./docs/VISUAL_BRIEF.md) · [docs/DIMOS_FEEL.md](./docs/DIMOS_FEEL.md) · [docs/CRITIQUE_FILTER.md](./docs/CRITIQUE_FILTER.md) · [docs/MOODBOARD_LABS.md](./docs/MOODBOARD_LABS.md) · [docs/LAYOUT-LABS.md](./docs/LAYOUT-LABS.md) · [docs/TYPE-LABS-CHROME.md](./docs/TYPE-LABS-CHROME.md) · live Vite shell.
 
-**Dual-signal color lock:** ink `#181919` · console cyan `#B0E1F0` (chrome / HUD / focus) · spatial acid `#B8FF3C` (live viewport / run-success only). Geist / Geist Mono. DimOS *feel*, not Dimensional brand.
+**Dual-signal:** ink `#181919` · console cyan `#B0E1F0` (chrome / HUD / focus) · spatial acid `#B8FF3C` (live viewport / run-success only). Geist / Geist Mono. DimOS *feel*, not Dimensional brand.
 
-Moodboard: [docs/MOODBOARD_LABS.md](./docs/MOODBOARD_LABS.md). Layout: [docs/LAYOUT-LABS.md](./docs/LAYOUT-LABS.md). Visual direction: [docs/VISUAL_BRIEF.md](./docs/VISUAL_BRIEF.md).
+Figma ([optional exploration](https://www.figma.com/design/GUBCEbveSK5JD1LNr8dhP0)) — not a build input.
 
 See [PRODUCT.md](./PRODUCT.md).
