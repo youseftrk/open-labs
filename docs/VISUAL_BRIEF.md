@@ -85,3 +85,6 @@ Frames 1440×900: Token Sheet · A Empty · B Sim session · C Deploy/train
 - DimOS refs PNGs + DIMOS_FEEL.md + TYPE-LABS-CHROME.md
 - startup-brand-identity + `_startup_brand_pack`
 - Vault REGISTRY mounts listed above
+
+## Build rule (founder 2026-09-22)
+**Do not build UI from Figma.** Docs + Critique filter + live shell are source of truth. Figma is optional exploration only — never a code handoff requirement.
