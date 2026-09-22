@@ -2,112 +2,82 @@
 
 **Product:** Ghostty-class native terminal (Mac + Windows) for robotics sim → train → deploy. Operator surface on Real2Sim. Not a VS Code clone.
 
-## Founder lock (2026-09-22) — DimOS *feel*, not DimOS *brand*
+## Founder / CTO locks (2026-09-22)
 
-Public Dimensional / DimOS console vibe ([dimensional.org](https://dimensional.org)): arcade/console terminal energy, ink charcoal + ice cyan, map/viewport + command center split. Steal craft and layout energy. **Do not clone Dimensional marks, wordmark, mascot, or 1:1 product chrome.**
+### DimOS *feel*, not DimOS *brand*
+Public Dimensional console vibe ([dimensional.org](https://dimensional.org)): arcade/console energy, ink + ice cyan, map/viewport + command-center split. Steal craft only. **Do not clone Dimensional marks, wordmark, mascot, or 1:1 chrome.**
 
-### DimOS feel notes (opened live)
-- Site boot: `SETTING TYPE : {ARCADE NORMAL}` · `SETTING COLOR : {#181919; #B0E1F0}`
-- Ink `#181919` + ice cyan `#B0E1F0` — utilitarian robotics dashboard, not SaaS
-- Spatial view + command center (~30% command / rest viewport)
-- Arcade/console terminal energy (dense mono instruments, not marketing hero)
+Clean-room refs (opened):
+- `/workspace/labs/dimos-refs/dimos-terminal.png` — charcoal grid, pale cyan type, arcade/terminal
+- `/workspace/labs/dimos-refs/dimos-prototype.png` — icon spatial nav, early-access sheet, cyan accents
+- Feel notes: `/workspace/open-labs/docs/DIMOS_FEEL.md`
 
-## Spatial UI direction
+`design-library\labs` on desktop = CAD/RL graded-env (URDF/MuJoCo) — steal **sim-grade spatial seriousness**, not UI chrome.
 
-**Thesis:** One dark glass shell. The 3D viewport is the stage; the terminal is a precision instrument docked to it — not a text app with a preview pane bolted on.
-
-### Depth stack (back → front)
-1. **Void canvas** — tinted near-black (ink/charcoal, never `#000`). Soft vignette, not flat fill.
-2. **Viewport plane** — sim world, full-bleed when focused; slight inner shadow so glass chrome sits *in front*.
-3. **Glass chrome** — translucent panels (blur + hairline border + specular edge). Liquid-glass language, not iOS-widget mush.
-4. **Floating rails / drawers** — status rail, robot/sim drawers; soft contact shadow onto viewport.
-5. **Cursor / selection** — sharp, high-contrast; terminal caret and selection stay crisp (no frosted text).
-
-### Layout grammar
-- **Primary:** command center ~30% + spatial viewport majority (DimOS console grammar). User-flippable.
-- **Status rail:** thin vertical strip: connection, sim clock, GPU/CPU, robot link, env id. Icons + mono values only.
-- **Robot / sim drawers:** slide from edge; list agents, sensors, scenes, checkpoints. Continuous corners.
-- **Command palette:** center glass sheet (Ghostty/Arc energy).
-- **Panes:** pill tabs on glass; inactive = lower opacity.
-
-### Type
-- UI chrome: **Geist** (Geist Mono for chrome labels).
-- Terminal buffer: **Geist Mono** / JetBrains Mono — never Inter as the product face.
-- Empty state wordmark: **Instrument Serif** OK sparingly. **No invented logos.**
-
-### Color — dual-signal lock (recommended)
-
+### Dual-signal accent (CTO lock)
 | Role | Hex | Use |
 | --- | --- | --- |
-| Ink | `#181919` | App void / chrome base (DimOS ink) |
-| Console cyan | `#B0E1F0` | Command instruments, focus rings, caret/selection, HUD ticks, map grid, chrome hairlines |
-| Spatial acid | `#B8FF3C` | Live viewport only: robot path, active agent, run/success in-sim, spatial selection |
-| Paper text | off-white (not `#fff`) | Primary type |
+| Ink | `#171819` / `#181919` family | Void + chrome base (Andrei ink `#171819` from CATALOG; DimOS `#181919`) |
+| Console / chrome / idle telemetry | `#B0E1F0` ice cyan | Chrome, HUD, focus, caret, map grid, idle metrics (DimOS feel) |
+| Live run / success / active train | `#B8FF3C` acid green | Live viewport + active train/success only (Labs signal) |
 
-**Rationale:** One hue collapses either console energy (cyan) or live spatial signal (acid). Dual-signal keeps DimOS arcade chrome *and* our robotics “alive in the map” accent without cloning Dimensional’s mark.
+Ice cyan is **not** banned by CATALOG (banned: deep-blue SaaS, AI purple, pure `#000`).
 
-**Single-hue fallback (if eng forces one):** lock `#B0E1F0` for all accents; demote acid to semantic-success only in logs. Prefer dual.
+### Type (Type Lab DimOS refine)
+| Face | Role |
+| --- | --- |
+| **Geist Mono** | Chrome / telemetry / labels / footer |
+| **Geist** | Readable panels |
+| Pixel arcade | Hero only — not product chrome |
+| Instrument Serif | Rare display / empty wordmark only — not console |
+| Inter | **Banned** on Labs product surfaces |
 
-**Banned:** deep-blue SaaS, AI purple, rainbow token soup, pure `#000`, cloning Dimensional logo/marks.
+Tracking: logs 0–+1; CAPS labels +4–+8; footer/version +6–+12.
+Color-with-type: ice cyan `#B0E1F0` on `#181919` for chrome labels — not acid green.
+Doc: `/workspace/labs/TYPE-LABS-CHROME.md` · portfolio TYPE-FLAGS still Instrument Serif + Geist.
 
-### Motion
-- Drawer/pane: short spring; no bounce theater.
-- Glass: opacity + blur on focus; no Ken Burns.
-- Terminal glyphs: zero animation.
+### Spatial UI language (CATALOG / REGISTRY — real mounts)
+**Glass / spatial:** arlan-vault (`holo`, `liquid-ui`, `chroma-glow`, `color-depth`, `squircle`, `ghosty-reveal`, `dia-gradient`); oa-design (`squircle-card`, `floating-pill`, `modal`, `reveal`); jakub-antalik (`gooey`, `beam`, `metal` — sparingly); bakai-lab (`island`; max one of `fade-grid`/`warp-grid`/`wave-grid`).
 
-### Anti-patterns
-- IDE Activity Bar clone; neon cyberpunk grid; heavy window chrome eating viewport; Dimensional brand clones.
+**Console / operator:** beautiful-ui (`sidebar-nav`, `task-rows`, `tool-chips`, `code-block`, `diff-table`, `records-table`, `filter-table`, `flowchart`, `prompt-bar`, `streaming-text`, `thinking`, `approval-card`, `context-cards`); bakai-lab (`pipeline`, `op-grid`, `sidebars`, `charts`, `dialog`); `scrollbar-but-cooler`.
 
-## Library citations opened (DESKTOP-KH5CIHK)
+**Skip:** hiartem `aurora-field` + purple link chrome.
 
-- `C:\Users\youse\OneDrive\Desktop\design-library\design-library\CATALOG.md`
-- `C:\Users\youse\OneDrive\Desktop\design-library\design-library\components\REGISTRY.md`
-- `C:\Users\youse\OneDrive\Desktop\COMPONENT-INDEX.md`
-- `C:\Users\youse\OneDrive\Desktop\design-library\startup-brand-identity\INDEX.md`
-- Systems opened: `pleo-brand-guidelines`, `ghia-brand-guidelines`, `ribbon-guidelines`, `brand-glossary`, `inspora-tensorlake-brand`
-- Explorations opened: `brandon-type-shit-wordmarks`, identity boards (`tiny-fruits`, `murs-a-fleurs`, `hkcta`, etc.)
-- Box pack: `/workspace/design-library/_startup_brand_pack/INDEX.md`
-- Components opened: `jakub-antalik/gooey`, `jakub-antalik/metal`, `scrollbar-but-cooler/ORIGIN.md`, `beautiful-ui/INDEX.md`, `arlan-vault/INDEX.md`, `bakai-lab/INDEX.md`
+### Brand pack (wordmark craft — not Labs lock)
+Desktop: `design-library\startup-brand-identity\` · Box: `/workspace/design-library/_startup_brand_pack/`
+Systems craft: pleo / ghia / ribbon / glossary. Wordmark mood packs stay explorations.
 
-## Brand refs (steal craft / stay out)
+## Layout grammar
+- Command center ~30% + spatial viewport majority (DimOS console grammar). User-flippable.
+- Status rail: connection, sim clock, GPU/CPU, robot link, env id — icons + mono.
+- Drawers: agents, sensors, scenes, checkpoints.
+- Command palette: center glass sheet.
+- Depth: void → viewport → glass chrome → rails → sharp caret (never blur glyphs).
+- Glass elevations: **3 max**.
 
-| # | Ref | Steal | Stay out |
-| --- | --- | --- | --- |
-| 1 | DimOS / dimensional.org | ink+cyan, arcade console, ~30% command + map | marks, wordmark, 1:1 chrome |
-| 2 | Pleo guidelines (`systems/pleo-brand-guidelines`) | system discipline | Pleo marks |
-| 3 | Ghia guidelines (`systems/ghia-brand-guidelines`) | identity system craft | Ghia marks |
-| 4 | Ribbon guidelines (`systems/ribbon-guidelines`) | guideline board craft | Ribbon marks |
-| 5 | Brand glossary (`systems/brand-glossary`) | brand vocabulary rigor | — |
-| 6 | Jakub gooey + metal (library) | instrument chrome / liquid metal | decorative goo everywhere |
-| 7 | Bakai glossy / glow / warp-grid (library) | spatial glass depth | copying studies wholesale |
-| 8 | Beautiful UI thinking / task-rows (library) | operator trace density | AI-chat SaaS look |
+## Banned
+Deep-blue SaaS, AI purple, rainbow token soup, pure `#000`, Dimensional brand clones, invented logos, Inter as product face.
 
-Extra mood (letterforms only): `explorations/brandon-type-shit-wordmarks` — not a type lock. Product type stays Geist + Instrument Serif where wordmark needed.
+## Eng tokens
+```
+--ink: #171819;
+--ink-dimos: #181919;
+--console-cyan: #B0E1F0;
+--spatial-acid: #B8FF3C;
+```
 
-## Mac + Windows native chrome
-- Frameless / thin titlebar; traffic lights or Win buttons inset into glass.
-- Mac: vibrancy/blur, menu bar, notch-safe; fullscreen auto-hide rail.
-- Windows: custom caption buttons, snap layouts, crisp DPI, no default Win11 blue mica.
+## Figma (`GUBCEbveSK5JD1LNr8dhP0`)
+https://www.figma.com/design/GUBCEbveSK5JD1LNr8dhP0
+Frames 1440×900: Token Sheet · A Empty · B Sim session · C Deploy/train
 
-## First three screens
-**A — Empty:** void + wordmark + glass pills: New sim session · Open env · Connect robot.
-**B — Sim session:** viewport majority + ~30% command center + live status rail.
-**C — Deploy/train:** glass status sheet (phase, progress, artifact, ETA); terminal logs stay attached.
+### Delta (this pass)
+1. Token Sheet: dual-signal swatches + usage labels; ink family `#171819`/`#181919`
+2. A/B/C: cyan on chrome/HUD/idle; acid only on live viewport / active train
+3. Type labels → Geist / Geist Mono (per Type Lab)
+4. No new logos
 
-## Eng notes
-- Glass system: blur, border opacity, elevation — **3 elevations max**.
-- Glyph layer must never blur.
-- Tokens: expose `ink`, `console-cyan`, `spatial-acid`.
-
-## Figma delta plan (file `GUBCEbveSK5JD1LNr8dhP0`)
-
-1. **Token Sheet** — add Console cyan `#B0E1F0` + Ink `#181919`; keep Spatial acid `#B8FF3C`; label dual-signal usage.
-2. **A/B/C frames** — command center ~30%; cyan on chrome/HUD; acid only on in-viewport live signals.
-3. **No new logos** — empty-state wordmark is type-only.
-4. **Blocked 2026-09-22:** Figma MCP Starter rate limit — this brief is source of truth until canvas sync.
-
-## Figma (current)
-- File: https://www.figma.com/design/GUBCEbveSK5JD1LNr8dhP0
-- fileKey: `GUBCEbveSK5JD1LNr8dhP0`
-- Frames 1440×900: Token Sheet — Labs v0 · A Empty · B Sim session · C Deploy/train
-- Prior accent `#B8FF3C` → **dual-signal** with `#B0E1F0`
+## Library citations opened
+- Desktop CATALOG + REGISTRY (Andrei ink `#171819`, liquid-glass / oa-design, bans)
+- DimOS refs PNGs + DIMOS_FEEL.md + TYPE-LABS-CHROME.md
+- startup-brand-identity + `_startup_brand_pack`
+- Vault REGISTRY mounts listed above
