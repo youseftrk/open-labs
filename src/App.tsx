@@ -35,10 +35,7 @@ export default function App() {
     <div className={`app-shell layout-${mode}`}>
       <TitleBar title={title} />
       <div className="app-body">
-        <StatusRail
-          mode={mode}
-          onMode={(m) => setMode(m)}
-        />
+        <StatusRail mode={mode} onMode={(m) => setMode(m)} />
         <div className="stage">
           {mode === "empty" ? (
             <ViewportPane mode="empty" onEnterSim={enterSim} />
@@ -46,34 +43,34 @@ export default function App() {
             <div className="workspace-b">
               <div className="col-main">
                 <ViewportPane mode="sim" onEnterSim={enterSim} />
-                <div className="term-stack">
-                  <SessionTabs
-                    tabs={tabs}
-                    activeId={activeId}
-                    onSelect={setActiveId}
-                    onAdd={addTab}
-                  />
-                  <TerminalPane />
-                </div>
               </div>
-              <RobotsDrawer />
+              <div className="command-center" aria-label="Command center">
+                <RobotsDrawer />
+                <SessionTabs
+                  tabs={tabs}
+                  activeId={activeId}
+                  onSelect={setActiveId}
+                  onAdd={addTab}
+                />
+                <TerminalPane />
+              </div>
             </div>
           ) : (
             <div className="workspace-c">
               <div className="col-main">
                 <ViewportPane mode={mode} onEnterSim={enterSim} />
                 <CheckpointStrip />
-                <div className="term-stack">
-                  <SessionTabs
-                    tabs={tabs}
-                    activeId={activeId}
-                    onSelect={setActiveId}
-                    onAdd={addTab}
-                  />
-                  <TerminalPane />
-                </div>
               </div>
-              <StatusSheet mode={mode} />
+              <div className="command-center" aria-label="Command center">
+                <StatusSheet mode={mode} />
+                <SessionTabs
+                  tabs={tabs}
+                  activeId={activeId}
+                  onSelect={setActiveId}
+                  onAdd={addTab}
+                />
+                <TerminalPane />
+              </div>
             </div>
           )}
         </div>
