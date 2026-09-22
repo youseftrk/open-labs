@@ -1,0 +1,53 @@
+/* Labs spatial tokens — ink #171819 family, one accent, 3 glass elevations */
+:root {
+  /* Void / ink */
+  --ink-0: #121314;
+  --ink-1: #171819;
+  --ink-2: #1c1e20;
+  --ink-3: #232628;
+  --ink-4: #2c3033;
+
+  /* Paper text (never pure white) */
+  --paper: #e8e6e3;
+  --paper-muted: #9a9690;
+  --paper-dim: #6b6762;
+
+  /* One operator accent — acid green */
+  --accent: #b8f255;
+  --accent-dim: rgba(184, 242, 85, 0.18);
+  --accent-glow: rgba(184, 242, 85, 0.35);
+
+  /* Semantic */
+  --run: var(--accent);
+  --warn: #e8b84a;
+  --fail: #e85a4a;
+  --idle: var(--paper-dim);
+
+  /* Glass (3 elevations max) */
+  --glass-0: rgba(28, 30, 32, 0.55);
+  --glass-1: rgba(35, 38, 40, 0.72);
+  --glass-2: rgba(44, 48, 51, 0.88);
+  --glass-blur: 18px;
+  --hairline: rgba(232, 230, 227, 0.08);
+  --hairline-bright: rgba(232, 230, 227, 0.16);
+  --specular: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+  --shadow-contact: 0 8px 28px rgba(0, 0, 0, 0.45);
+
+  /* Type */
+  --font-ui: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+
+  /* Radius — continuous / squircle-ish */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  /* Motion */
+  --spring: 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}

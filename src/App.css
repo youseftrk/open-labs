@@ -1,0 +1,415 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--ink-0);
+  color: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Void canvas + soft vignette */
+.app-shell {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 40%, transparent 40%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(ellipse at 30% 20%, rgba(184, 242, 85, 0.03), transparent 50%),
+    var(--ink-1);
+}
+
+/* —— Status / mode rail (glass) —— */
+.side-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  background: var(--glass-1);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-right: 1px solid var(--hairline);
+  box-shadow: var(--shadow-contact);
+  position: relative;
+  z-index: 4;
+}
+
+.side-rail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--specular);
+  pointer-events: none;
+  border-radius: 0;
+}
+
+.rail-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 10px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(184, 242, 85, 0.25);
+}
+
+.rail-modes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.mode-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--paper-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 10px 4px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background var(--spring), color var(--spring), border-color var(--spring),
+    opacity var(--spring);
+  opacity: 0.7;
+}
+
+.mode-btn:hover {
+  opacity: 1;
+  background: rgba(232, 230, 227, 0.04);
+  color: var(--paper);
+}
+
+.mode-btn.active {
+  opacity: 1;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-color: rgba(184, 242, 85, 0.28);
+}
+
+.rail-spacer {
+  flex: 1;
+}
+
+.rail-stat {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--paper-dim);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+/* —— Main stage —— */
+.stage {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  min-height: 0;
+}
+
+.session-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--glass-0);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline);
+  z-index: 3;
+}
+
+.tab-pill {
+  appearance: none;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--paper-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity var(--spring), background var(--spring), border-color var(--spring);
+}
+
+.tab-pill.active {
+  opacity: 1;
+  color: var(--paper);
+  background: var(--glass-2);
+  border-color: var(--hairline-bright);
+}
+
+.tab-pill.add {
+  opacity: 0.4;
+  border-style: dashed;
+  padding: 5px 10px;
+}
+
+.tab-pill.add:hover {
+  opacity: 0.8;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr);
+  min-height: 0;
+  gap: 0;
+}
+
+/* Viewport plane (placeholder for v0) */
+.viewport {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 60%, rgba(35, 38, 40, 0.9), var(--ink-0)),
+    var(--ink-0);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.35);
+  min-height: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.viewport-inner {
+  position: absolute;
+  inset: 16px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--hairline);
+  background: var(--ink-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.viewport-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--glass-0);
+}
+
+.viewport-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--paper-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.viewport-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--paper);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--paper-dim);
+  max-width: 320px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.glass-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.glass-pill {
+  appearance: none;
+  border: 1px solid var(--hairline-bright);
+  background: var(--glass-1);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  box-shadow: var(--shadow-contact);
+  transition: border-color var(--spring), background var(--spring), color var(--spring);
+}
+
+.glass-pill:hover {
+  border-color: rgba(184, 242, 85, 0.4);
+  color: var(--accent);
+}
+
+.glass-pill.primary {
+  background: var(--accent-dim);
+  border-color: rgba(184, 242, 85, 0.35);
+  color: var(--accent);
+}
+
+.mode-panel {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  overflow: auto;
+}
+
+.mode-panel h2 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper-muted);
+}
+
+.mode-card {
+  background: var(--glass-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  padding: 14px;
+  box-shadow: var(--shadow-contact);
+}
+
+.mode-card p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--paper-muted);
+  line-height: 1.45;
+}
+
+.mode-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.mode-meta span {
+  color: var(--paper-dim);
+}
+
+.mode-meta strong {
+  color: var(--paper);
+  font-weight: 500;
+}
+
+/* Terminal dock — glyph layer never blurs */
+.terminal-dock {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--ink-1);
+  border-left: 1px solid var(--hairline);
+  position: relative;
+  z-index: 2;
+}
+
+.terminal-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--glass-0);
+  border-bottom: 1px solid var(--hairline);
+  /* Glass on chrome only — not on glyphs */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--paper-muted);
+  letter-spacing: 0.04em;
+}
+
+.terminal-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.mini-btn {
+  appearance: none;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--paper-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+
+.mini-btn:hover {
+  color: var(--accent);
+  border-color: rgba(184, 242, 85, 0.3);
+}
+
+.terminal-host {
+  flex: 1;
+  min-height: 0;
+  padding: 8px;
+  /* CRITICAL: no blur/filter on glyph layer */
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.terminal-host .xterm {
+  height: 100%;
+}
+
+.terminal-host .xterm-viewport {
+  overflow-y: auto !important;
+}
+
+/* Empty / browser fallback banner */
+.stub-banner {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--warn);
+  padding: 4px 12px;
+  border-bottom: 1px solid rgba(232, 184, 74, 0.2);
+  background: rgba(232, 184, 74, 0.08);
+}
