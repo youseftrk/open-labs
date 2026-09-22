@@ -14,11 +14,8 @@ Public references only. No Dimensional / DimOS code or marks.
 - Startup brand craft from `startup-brand-identity` pack (shared across Design Friends).
 - Labs product voice: “terminal for robot people — sim, train, deploy.”
 
-## Open design decision
-Reconcile Labs v0 acid green `#B8FF3C` vs DimOS ice cyan `#B0E1F0` — Design Engineer to recommend dual-signal or single lock.
-
-## Accent lock (2026-09-22)
-**Dual-signal**
+## Accent lock (2026-09-22) — CTO confirmed dual-signal
 - Console / chrome / idle telemetry: ice cyan `#B0E1F0`
 - Live run / success / active train: acid green `#B8FF3C`
-- Ink surface: `#171819` / `#181919` family (never pure `#000`)
+- Ink surface: `#171819` / `#181919` family (Andrei CATALOG `#171819`; DimOS `#181919`; never pure `#000`)
+- Open decision closed. Figma token sheet delta queued (MCP rate-limited; brief/moodboard are SoT).
