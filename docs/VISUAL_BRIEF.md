@@ -53,3 +53,9 @@
 - Glass system: blur, border opacity, elevation — **3 elevations max**.
 - Glyph layer must never blur.
 - Next: Figma A/B/C at 1440×900 + token sheet.
+
+## Figma (locked)
+- File: https://www.figma.com/design/GUBCEbveSK5JD1LNr8dhP0
+- fileKey: `GUBCEbveSK5JD1LNr8dhP0`
+- Frames 1440×900: Token Sheet — Labs v0 · A Empty · B Sim session · C Deploy/train
+- Accent locked: `#B8FF3C`
