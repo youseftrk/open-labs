@@ -32,7 +32,7 @@ export function StatusSheet({ mode }: Props) {
         <div className="progress-fill" style={{ width: active === 1 ? "62%" : "8%" }} />
       </div>
       <p className="sheet-artifact">artifact: run-042/weights.pt</p>
-      <p className="sheet-note">accent = acid green only on active phase</p>
+      <p className="sheet-note">cyan = chrome · acid = live run / path only</p>
     </aside>
   );
 }

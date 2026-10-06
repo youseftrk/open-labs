@@ -1,32 +1,40 @@
-/* Labs spatial tokens — locked to Figma Token Sheet (GUBCEbveSK5JD1LNr8dhP0 / 1:2) */
+/* Labs dual-signal tokens — VISUAL_BRIEF founder lock 2026-09-22 */
 :root {
   /* Surfaces */
   --void: #121314;
-  --ink: #171819;
+  --ink: #181919;
   --ink-0: var(--void);
   --ink-1: var(--ink);
   --ink-2: #1c1e20;
   --ink-3: #232628;
   --ink-4: #2c3033;
 
-  /* Paper (Token Sheet) — never pure #fff */
+  /* Paper text — never pure #fff */
   --paper: #f2f0eb;
   --paper-muted: #8c8c8c;
   --paper-dim: #6b6762;
   --muted: #8c8c8c;
 
-  /* Accent locked: acid green */
-  --accent: #b8ff3c;
-  --accent-dim: rgba(184, 255, 60, 0.18);
-  --accent-glow: rgba(184, 255, 60, 0.35);
+  /* Dual-signal accents */
+  --console-cyan: #b0e1f0;
+  --console-cyan-dim: rgba(176, 225, 240, 0.18);
+  --console-cyan-glow: rgba(176, 225, 240, 0.35);
+  --spatial-acid: #b8ff3c;
+  --spatial-acid-dim: rgba(184, 255, 60, 0.18);
+  --spatial-acid-glow: rgba(184, 255, 60, 0.35);
+
+  /* Legacy aliases — prefer cyan for chrome, acid for live viewport */
+  --accent: var(--console-cyan);
+  --accent-dim: var(--console-cyan-dim);
+  --accent-glow: var(--console-cyan-glow);
 
   /* Semantic */
-  --run: var(--accent);
+  --run: var(--spatial-acid);
   --warn: #e8b84a;
   --fail: #e85a4a;
   --idle: var(--paper-dim);
 
-  /* Glass elevations — 3 max (E0 flush / E1 dock / E2 float) */
+  /* Glass elevations — 3 max */
   --glass-e0: rgba(242, 240, 235, 0.04);
   --glass-e1: rgba(242, 240, 235, 0.08);
   --glass-e2: rgba(242, 240, 235, 0.14);
@@ -35,16 +43,15 @@
   --glass-2: var(--glass-e2);
   --glass-blur: 18px;
   --glass-blur-e2: 24px;
-  --hairline: rgba(242, 240, 235, 0.08);
-  --hairline-bright: rgba(242, 240, 235, 0.16);
+  --hairline: rgba(176, 225, 240, 0.12);
+  --hairline-bright: rgba(176, 225, 240, 0.22);
   --specular: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.07) 0%,
+    rgba(176, 225, 240, 0.08) 0%,
     rgba(255, 255, 255, 0) 40%
   );
   --shadow-contact: 0 8px 28px rgba(0, 0, 0, 0.45);
 
-  /* Type — Geist only as product face (no Inter) */
   --font-ui: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
@@ -55,5 +62,6 @@
   --r-pill: 999px;
 
   --rail-w: 44px;
+  --command-w: 30%;
   --spring: 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }

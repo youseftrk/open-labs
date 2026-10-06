@@ -32,18 +32,18 @@ export function TerminalPane() {
       fontSize: 13,
       lineHeight: 1.35,
       theme: {
-        background: "#171819",
+        background: "#181919",
         foreground: "#f2f0eb",
-        cursor: "#b8ff3c",
-        cursorAccent: "#171819",
-        selectionBackground: "rgba(184, 255, 60, 0.25)",
-        black: "#171819",
+        cursor: "#b0e1f0",
+        cursorAccent: "#181919",
+        selectionBackground: "rgba(176, 225, 240, 0.28)",
+        black: "#181919",
         brightBlack: "#6b6762",
         green: "#b8ff3c",
         brightGreen: "#d4ff6a",
         yellow: "#e8b84a",
         red: "#e85a4a",
-        cyan: "#9a9690",
+        cyan: "#b0e1f0",
         white: "#f2f0eb",
       },
       allowTransparency: false,
@@ -65,9 +65,9 @@ export function TerminalPane() {
     termRef.current = term;
     fitRef.current = fit;
 
-    term.writeln("\x1b[38;2;184;255;60mLabs\x1b[0m — terminal for robot people");
+    term.writeln("\x1b[38;2;176;225;240mLabs\x1b[0m — terminal for robot people");
     writeInfo(term, "Type a command and press Enter. Interactive PTY when Tauri + portable-pty are live.");
-    term.write("\r\n\x1b[38;2;184;255;60m›\x1b[0m ");
+    term.write("\r\n\x1b[38;2;176;225;240m›\x1b[0m ");
 
     const onData = term.onData((data) => {
       for (const ch of data) {
@@ -76,17 +76,17 @@ export function TerminalPane() {
           term.write("\r\n");
           lineBuf.current = "";
           if (!cmd) {
-            term.write("\x1b[38;2;184;255;60m›\x1b[0m ");
+            term.write("\x1b[38;2;176;225;240m›\x1b[0m ");
             continue;
           }
           if (isTauri()) {
             invoke("run_shell", { command: cmd }).catch((e) => {
               term.writeln(`\x1b[38;2;232;90;74merror: ${e}\x1b[0m`);
-              term.write("\x1b[38;2;184;255;60m›\x1b[0m ");
+              term.write("\x1b[38;2;176;225;240m›\x1b[0m ");
             });
           } else {
             writeInfo(term, `[browser] would run: ${cmd}`);
-            term.write("\x1b[38;2;184;255;60m›\x1b[0m ");
+            term.write("\x1b[38;2;176;225;240m›\x1b[0m ");
           }
         } else if (ch === "\u007f") {
           if (lineBuf.current.length > 0) {
@@ -122,7 +122,7 @@ export function TerminalPane() {
 
       listen<ShellDone>("shell-done", (ev) => {
         writeInfo(term, `exit ${ev.payload.code}`);
-        term.write("\x1b[38;2;184;255;60m›\x1b[0m ");
+        term.write("\x1b[38;2;176;225;240m›\x1b[0m ");
       }).then((u) => {
         undone = u;
       });
